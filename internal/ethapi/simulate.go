@@ -134,8 +134,7 @@ func (sim *simulator) execute(ctx context.Context, blocks []simBlock) ([]map[str
 		enc := RPCMarshalBlock(result, true, sim.fullTx, sim.chainConfig)
 		enc["calls"] = callResults
 		results[bi] = enc
-
-		parent = headers[bi]
+		parent = result.Header()
 	}
 	return results, nil
 }
